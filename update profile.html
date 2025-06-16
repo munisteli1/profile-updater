@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Update Profile</title>
+  <script>
+    async function updateProfile() {
+      const params = new URLSearchParams(window.location.search);
+      const phone = params.get("phone");
+      const first_name = params.get("first_name");
+      const last_name = params.get("last_name");
+      const email = params.get("email");
+      const age = params.get("age");
+      const gender = params.get("gender");
+
+      const response = await fetch("https://x8ki-letl-twmt.n7.xano.io/api:Tpr0AGgG/update_user_profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          phone: phone,
+          otp: "0000", // dummy value
+          full_name: fullName,
+          email: email,
+          age: age,
+          gender: gender
+        })
+      });
+
+      const result = await response.json();
+      document.getElementById("result").innerText = "✅ Profile Updated Successfully!";
+    }
+
+    window.onload = updateProfile;
+  </script>
+</head>
+<body>
+  <h2 id="result">Updating Profile...</h2>
+</body>
+</html>
